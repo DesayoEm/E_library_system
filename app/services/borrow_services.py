@@ -11,6 +11,7 @@ class BorrowService:
         self.borrows = borrows
 
     def validate_borrow_eligibility(self, user_id: str, book_id: str) -> None:
+        """validate book and user state before borrow"""
         user = user_crud.get_user(user_id)
         book = book_crud.get_book(book_id)
 
@@ -58,6 +59,7 @@ class BorrowService:
 
 
     def process_return(self, borrow_id: int, payload: ReturnModel) -> BorrowRecord:
+        """process a return"""
         borrow = self.get_borrow_record(borrow_id)
         borrow.return_date = payload.return_date
 
